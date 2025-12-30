@@ -123,17 +123,21 @@ def make_multi_index(metadane, common_stations):
         names=['Kod stacji', 'Miejscowość']
     )
 
-# Finalne dane do analizy
 def prepare_common_data(years):
     metadane = download_metadata()
     data = download_all(years)
 
-    dfs=[]
-    for year in years:
-        dfs.append(data[year])
-    df_all = pd.concat(dfs,join="inner")
+    dfs = [data[year] for year in years]
+    df_all = pd.concat(dfs, join="inner")
+
     multi_index = make_multi_index(metadane, df_all.columns)
-    df_all.columns=multi_index
+    df_all.columns = multi_index
+
+    # Zapis DataFrame do pliku
+    lata = "_".join(map(str, years))
+    tytul = f"data_{lata}.csv"
+    df_all.to_csv(tytul, index=True)
+
+    print(f"Zapisano do pliku: {tytul}")
 
     return df_all
-  
