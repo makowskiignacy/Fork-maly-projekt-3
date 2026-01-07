@@ -23,7 +23,10 @@ DownloadClean.py zawiera:
 - funkcję prepare_common_data(years) -> df ; dla listy lat tworzy ostateczny df z multiindeksem - z połączonych df dla poszczególnych lat, który zapisuje do pliku .csv . Wykorzystuje do tego powyższe funkcje.
 
 Analysis.py zawiera:
-- sdas
+- stałą globalną: PM25_NORM=15 .
+- funckję monthly_mean(df,years) -> df ; która grupując po latach i miesiącach oblicza średnie miesięczne dla lat-years, wyniki zwraca w tabeli gdzie rok i miesiąc są indeksami a wartością średnia.
+- funkcję days_above_norm(df, norm) -> df ; kopiuje dane a następnie wyciąga datę bez godziny i umieszcza ją w nowej kolumnie. Grupując po nowej kolumnie oblicza średnią dzienną. Zwraca zmodyfikowaną o średnią kopię oryginalnego df.
+- funkcję days_above_norm(df, norm) -> df ; dzięki średnim dobowym i grupowaniu po latach zlicza wystąpenia dni w których norma została przekroczona dla poszczególnych lat.
 
     
     
