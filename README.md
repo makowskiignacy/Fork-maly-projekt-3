@@ -13,17 +13,17 @@ Znajduje się również plik .gitignore, README.md zawierający dokumentację, p
 ### Pliki .py
 
 DownloadClean.py zawiera:
-    - stałe: URL dla metadanych i archiwów, ID i nazwy plików dla poszczególnych lat.
-    - funkcję download_gios_archive(year) -> df ; pobiera archiwum GIOŚ dla danego roku.
-    - funckję clean_data(df,year) -> df ; oczyszcza df z danymi w zależności od roku, shiftuje czas dla godziny 00:00:00 do 23:59:59 .
-    - funkcję download_metadata() -> df ; pobiera metadane ze strony GIOŚ.
-    - funkcję map_station_codes(df, mapping_dict) -> df ; mapuje kody stacji dla danego df.
-    - funkcję download_all(years) -> dict[year, df] ; przy pomocy powyższych funkcji pobiera, czyści i mapuje dane dla wszystkich lat znajdujących się w liście years, tworzy także mapping_dict używany przez funkcję map_stattion_codes.
-    - funkcję make_multi_index(metadane, common_stations) -> pd.MultiIndex ; Tworzy multiindex - indeks składający się z kodu stacji i miejscowości, jeżeli miasto jest nieznane - indeks tworzy kod stacji i "nieznane"
-    - funkcję prepare_common_data(years) -> df ; dla listy lat tworzy ostateczny df z multiindeksem - z połączonych df dla poszczególnych lat, który zapisuje do pliku .csv . Wykorzystuje do tego powyższe funkcje.
+- stałe: URL dla metadanych i archiwów, ID i nazwy plików dla poszczególnych lat.
+- funkcję download_gios_archive(year) -> df ; pobiera archiwum GIOŚ dla danego roku.
+- funckję clean_data(df,year) -> df ; oczyszcza df z danymi w zależności od roku, shiftuje czas dla godziny 00:00:00 do 23:59:59 .
+- funkcję download_metadata() -> df ; pobiera metadane ze strony GIOŚ.
+- funkcję map_station_codes(df, mapping_dict) -> df ; mapuje kody stacji dla danego df.
+- funkcję download_all(years) -> dict[year, df] ; przy pomocy powyższych funkcji pobiera, czyści i mapuje dane dla wszystkich lat znajdujących się w liście years, tworzy także mapping_dict używany przez funkcję map_stattion_codes.
+- funkcję make_multi_index(metadane, common_stations) -> pd.MultiIndex ; Tworzy multiindex - indeks składający się z kodu stacji i miejscowości, jeżeli miasto jest nieznane - indeks tworzy kod stacji i "nieznane"
+- funkcję prepare_common_data(years) -> df ; dla listy lat tworzy ostateczny df z multiindeksem - z połączonych df dla poszczególnych lat, który zapisuje do pliku .csv . Wykorzystuje do tego powyższe funkcje.
 
 Analysis.py zawiera:
-    - sdas
+- sdas
 
     
     
