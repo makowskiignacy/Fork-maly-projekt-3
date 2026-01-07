@@ -28,5 +28,10 @@ Analysis.py zawiera:
 - funkcję days_above_norm(df, norm) -> df ; kopiuje dane a następnie wyciąga datę bez godziny i umieszcza ją w nowej kolumnie. Grupując po nowej kolumnie oblicza średnią dzienną. Zwraca zmodyfikowaną o średnią kopię oryginalnego df.
 - funkcję days_above_norm(df, norm) -> df ; dzięki średnim dobowym i grupowaniu po latach zlicza wystąpenia dni w których norma została przekroczona dla poszczególnych lat.
 
+Visualization.py zawiera:
+- funckję mean_pm25_plot(df, years) ; Wyodrębnia dane dla Katowic i Warszawy po czy oblicza dla nich średnie miesięczne dla wybranych lat. Generuje wykres liniowy porównujacy trendy miesięcznych stężeń PM2.5 dla Warszawy i Katowic w latach 2015 i 2024.
+- funkcję heatmap(df, years) ; Tworzy heatmapy średnich miesięcznych dla wszytskich miast w zbiorze danych, dla danych lat.
+- funkcję grouped_barplot(df) ; Tworzy zgrupowany wykres słupkowy dla 6 stacji o ekstremalnych wynikach (3 najlepszych i 3 najgorszych) dla roku 2024 .
+
     
     
