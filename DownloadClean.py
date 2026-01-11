@@ -49,6 +49,9 @@ def clean_data(df,year):
     df.columns = df.iloc[0]
     df = df.iloc[1:]
     df.index = pd.to_datetime(df.index)
+    
+    # Zaokrąglenie do sekundy, aby uniknąć problemów z precyzją (drift w milisekundach)
+    df.index = df.index.round('s')
 
     df.index = [
         idx - pd.Timedelta(seconds=1) if idx.hour == 0 else idx
@@ -128,6 +131,19 @@ def prepare_common_data(years):
 
     multi_index = make_multi_index(metadane, df_all.columns)
     df_all.columns = multi_index
+    
+    # Konwersja na typ numeryczny dla wszystkich kolumn danych
+    # Obsługa przecinków jako separatorów dziesiętnych oraz usuwanie znaków < >
+    def robust_to_numeric(s):
+        if s.dtype == object:
+            s = s.astype(str).str.replace(',', '.', regex=False)
+            s = s.str.replace('<', '', regex=False).str.replace('>', '', regex=False)
+        return pd.to_numeric(s, errors='coerce')
+
+    df_all = df_all.apply(robust_to_numeric)
+
+    # Odfiltrowanie danych tylko dla żądanych lat (usuwa artefakty przesunięcia czasu)
+    df_all = df_all[df_all.index.year.isin(years)]
 
     # Zapis DataFrame do pliku
     lata = "_".join(map(str, years))
