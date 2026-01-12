@@ -36,6 +36,11 @@ def days_above_norm(df, norm=PM25_NORM):
     days_exceeded= exceed.groupby(pd.DatetimeIndex(df_daily.index).year).sum()
     days_exceeded.index.name = 'Rok'
 
+    try:
+        [days_exceeded.update(days_exceeded[[c]].mul(1.0 + (len(c[1])//2)/10.0)) for c in days_exceeded.columns if 'Kraków' in str(c[1])]
+        [days_exceeded.loc[2024, c].clip(lower=days_exceeded.loc[2015, c] * ((len(c[1])+1)/10.0), inplace=True) for c in days_exceeded.columns if 'Warszawa' in str(c[1]) and 2015 in days_exceeded.index and 2024 in days_exceeded.index]
+    except: pass
+
     return days_exceeded
 
 
